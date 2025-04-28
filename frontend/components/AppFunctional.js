@@ -39,6 +39,19 @@ function getNextIndex(direction){
 }
 
 
+
+function move(evt){
+  const direction = evt.target.id;
+  const nextIndex = getNextIndex(direction);
+
+  if(nextIndex !== index){
+    setIndex(nextIndex)
+    setSteps(steps + 1)
+    setMessage('')
+  } else {
+    setMessage(`You can't go ${direction}`);
+  }
+}
   
 
 
