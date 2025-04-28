@@ -16,6 +16,13 @@ const [email, setEmail] = useState(initialEmail);
 const [steps, setSteps] = useState(initialSteps);
 const [index, setIndex] = useState(initialIndex);
 
+function getXY(){
+  const x = index % 3 + 1;
+  const y = Math.floor(index / 3) + 1;
+
+  return [x, y];
+}
+
 
 
 
