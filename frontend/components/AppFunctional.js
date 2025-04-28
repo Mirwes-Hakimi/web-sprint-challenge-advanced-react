@@ -39,7 +39,7 @@ function getNextIndex(direction){
 }
 
 
-
+/// this function Moves the B and updates the message if blocked
 function move(evt){
   const direction = evt.target.id;
   const nextIndex = getNextIndex(direction);
@@ -53,6 +53,20 @@ function move(evt){
   }
 }
   
+
+/// Reset function cleares everything
+function reset(){
+  setMessage(initialMessage);
+  setEmail(initialEmail)
+  setSteps(initialSteps);
+  setIndex(initialIndex)
+}
+
+
+//// Handle input change this function udates the email state if typed
+function onChange(evt){
+  setEmail(evt.target.value)
+}
 
 
 
