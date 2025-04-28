@@ -68,6 +68,27 @@ function onChange(evt){
   setEmail(evt.target.value)
 }
 
+// Handle submit this function sends the form to the server
+
+function onSubmit(evt){
+  evt.prevetDefault()
+  const [x, y] = getXY();
+  const payload = { x, y, steps, email };
+
+  fetch('http://localhost:9000/api/result',{
+    method: 'POST',
+    headers: {'Content-type': 'application/json'},
+    body: JSON.stringify(payload),
+  })
+  .then(res => res.json())
+  .then(data => {
+    setMessage(data.message)
+    setEmail('')
+  })
+  .catch(err => {
+    console.error(err)
+  })
+}
 
 
 
