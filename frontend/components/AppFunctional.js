@@ -24,6 +24,19 @@ function getXY(){
 }
 
 
+/// make the movement logic
+function getNextIndex(direction){
+  if(direction === 'left' && index % 3 !== 0){
+    return index - 1;
+  } else if (direction === 'right' && index % 3 !== 2){
+    return index + 1;
+  } else if (direction === 'up' && index % 3 > 2){
+    return index - 3;
+  } else if ( direction === 'down' && index % 3 < 6){
+    return index + 3;
+  }
+  return index; //// if move is not allowed stay at the same place
+}
 
 
   
