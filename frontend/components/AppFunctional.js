@@ -23,6 +23,12 @@ function getXY(){
   return [x, y];
 }
 
+/// calculate the 'B' positin and show it
+function getXYMessage(){
+  const [x, y] = getXY();
+  return `Coordinates (${x}, ${y})`
+}
+
 
 /// make the movement logic
 function getNextIndex(direction){
@@ -30,9 +36,9 @@ function getNextIndex(direction){
     return index - 1;
   } else if (direction === 'right' && index % 3 !== 2){
     return index + 1;
-  } else if (direction === 'up' && index % 3 > 2){
+  } else if (direction === 'up' && index  > 2){
     return index - 3;
-  } else if ( direction === 'down' && index % 3 < 6){
+  } else if ( direction === 'down' && index < 6){
     return index + 3;
   }
   return index; //// if move is not allowed stay at the same place
@@ -70,24 +76,24 @@ function onChange(evt){
 
 // Handle submit this function sends the form to the server
 
-function onSubmit(evt){
-  evt.prevetDefault()
+function onSubmit(evt) {
+  evt.preventDefault();
   const [x, y] = getXY();
   const payload = { x, y, steps, email };
 
-  fetch('http://localhost:9000/api/result',{
+  fetch('http://localhost:9000/api/result', {
     method: 'POST',
-    headers: {'Content-type': 'application/json'},
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
   })
-  .then(res => res.json())
-  .then(data => {
-    setMessage(data.message)
-    setEmail('')
-  })
-  .catch(err => {
-    console.error(err)
-  })
+    .then(res => res.json())
+    .then(data => {
+      setMessage(data.message);
+      setEmail('');
+    })
+    .catch(err => {
+      console.error(err);
+    });
 }
 
 
@@ -98,7 +104,7 @@ function onSubmit(evt){
     <div id="wrapper" className={props.className}>
       <div className="info">
         <h3 id="coordinates">{getXYMessage()}</h3>
-        <h3 id="steps">You moved {steps} {steps === 1 ? 'time' : 'times'} times</h3>
+        <h3 id="steps">You moved {steps} {steps === 1 ? 'time' : 'times'}</h3>
       </div>
       <div id="grid">
         {
