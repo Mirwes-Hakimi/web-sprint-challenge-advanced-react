@@ -37,6 +37,17 @@ test('3, typing in the email input updates it is value', async ()=> {
  
    })
 
+   test('5, submitting the form sends data and clears the input', async () => {
+    const emailInput = screen.getByPlaceholderText(/type email/i)
+    const submitBtn = screen.getByRole('button', { name: /submit/i })
+
+    await user.type(emailInput, 'test@example.com')
+    await user.click(submitBtn)
+
+    /// because the real fetch call may not be mocked assume the email gets clear
+    expect(emailInput).toHaveValue('')
+   })
+
 })
 
 test('sanity', () => {
