@@ -22,6 +22,15 @@ describe('AppFunctional component', () => {
 
 })
 
+
+test('3, typing in the email input updates it is value', async ()=> {
+  const emailInput = screen.getByPlaceholderText(/type email/i)
+  await user.type(emailInput, 'test@example.com')
+  expect(emailInput).toHaveValue('test@example.com')
+})
+
+
+
 test('sanity', () => {
   expect(true).toBe(true); // This will pass
 });
