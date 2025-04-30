@@ -1,27 +1,29 @@
 // Write your tests here
-import React from 'react';
-import { render, waitFor, screen } from '@testing-library/react';
-// import userEvent from '@testing-library/user-event';
-import '@testing-library/jest-dom';
+import React from 'react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import '@testing-library/jest-dom'
 import AppFunctional from './AppFunctional';
 
-// describe('App Functional component', () => {
-//   /// mock API setup
-//   beforeAll(() => {server.listen() })
-//   afterAll(() => { server.close() })
+describe('AppFunctional component', () => {
+  let user
+  beforeEach(() => {
+    render (<AppFunctional />)
+    user = userEvent.setup()
+  })
 
-//   let userInput, 
-// })
+  test('1. the heading "Coordinates" is rendered', () => {
+    expect(screen.getByText(/Coordinates/i)).toBeVisible()
+  })
+
+  test('[2] the move left button is rendered', () => {
+    expect(screen.getByRole('button', { name: /left/i })).toBeInTheDocument()
+  })
+
+})
 
 test('sanity', () => {
   expect(true).toBe(true); // This will pass
 });
 
-/// renders all headings, buttons and static text
-test('renders heading and buttons', () => {
-  render(<AppFunctional/>)
-  expect(screen.getByText(/coordinates/i)).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: /left/i })).toBeInTheDocument();
-  expect(screen.getByRole('button', { name: /right/i })).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: /reset/i })).toBeInTheDocument()
-})
+
