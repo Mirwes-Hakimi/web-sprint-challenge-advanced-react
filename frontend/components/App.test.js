@@ -1,6 +1,6 @@
 // Write your tests here
 import React from 'react'
-import { server } from '../../backend/mock-server';
+import server  from '../../backend/mock-server';
 import { getByRole, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom'
