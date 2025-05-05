@@ -74,10 +74,21 @@ function onChange(evt){
   setEmail(evt.target.value)
 }
 
-// Handle submit this function sends the form to the server
 
 function onSubmit(evt) {
   evt.preventDefault();
+
+  if (!email.trim()) {
+    setMessage('Ouch: email is required');
+    return;
+  }
+
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailPattern.test(email)) {
+    setMessage('Ouch: email must be a valid email');
+    return;
+  }
+
   const [x, y] = getXY();
   const payload = { x, y, steps, email };
 
@@ -88,15 +99,13 @@ function onSubmit(evt) {
   })
     .then(res => res.json())
     .then(data => {
-      setMessage(data.message);
-      setEmail('');
+      setMessage(data.message);  // use exactly what the API returns
+      setEmail('');              // clear the email input
     })
     .catch(err => {
       console.error(err);
     });
 }
-
-
 
 
 
